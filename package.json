@@ -1,0 +1,15 @@
+{
+  "name": "knowledge-base",
+  "version": "1.0.0",
+  "description": "Simple knowledgebase app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Gavin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "pug": "^2.0.0-rc.3"
+  }
+}
