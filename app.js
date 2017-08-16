@@ -24,10 +24,13 @@ app.set('view engine', 'pug');
 
 // Body-parser middleware
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+// Set public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Home route
 app.get('/', function(req, res) {
@@ -43,14 +46,23 @@ app.get('/', function(req, res) {
   });
 });
 
-// Add route
+// Get single article
+app.get('/article/:id', function(req, res) {
+  Article.findById(req.params.id, function(err, article) {
+    res.render('article', {
+      article: article
+    });
+  });
+});
+
+// Add GET route
 app.get('/articles/add', function(req, res) {
   res.render('add_article', {
     title: 'Articles'
   });
 });
 
-// Add submit POST route
+// Add POST route
 app.post('/articles/add', function(req, res) {
   let article = new Article();
   article.title = req.body.title;
